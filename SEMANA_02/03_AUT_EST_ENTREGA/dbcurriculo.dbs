@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Sqlite" id="Project-1397" database="Sqlite" >
+	<schema name="Default" >
+		<table name="experiencia" spec="" >
+			<column name="id_expec" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="id_pessoa" type="INTEGER" jt="4" />
+			<column name="nome_empresa" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="ano" type="DATE" jt="91" mandatory="y" />
+			<column name="cargo" type="CHAR" length="20" jt="1" mandatory="y" />
+			<column name="descricao" type="CHAR" length="225" jt="1" mandatory="y" />
+			<index name="pk_experiencia" unique="PRIMARY_KEY" >
+				<column name="id_expec" />
+			</index>
+			<fk name="FK_experiencia pessoa" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_expec" pk="id_pessoa" />
+			</fk>
+			<fk name="FK_experiencia pessoa_001" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_pessoa" pk="id_pessoa" />
+			</fk>
+		</table>
+		<table name="formacao" spec="" >
+			<column name="id_curso" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="id_pessoa" type="INTEGER" jt="4" />
+			<column name="nome_curso" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="ano_inicio" type="DATE" jt="91" mandatory="y" />
+			<column name="ano_fim" type="DATE" jt="91" mandatory="y" />
+			<column name="descricao" type="CHAR" length="225" jt="1" mandatory="y" />
+			<index name="pk_formacao" unique="PRIMARY_KEY" >
+				<column name="id_curso" />
+			</index>
+			<fk name="FK_formacao pessoa" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_curso" pk="id_pessoa" />
+			</fk>
+			<fk name="FK_formacao pessoa_001" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_pessoa" pk="id_pessoa" />
+			</fk>
+		</table>
+		<table name="habilidade" spec="" >
+			<column name="id_skill" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="id_pessoa" type="INTEGER" jt="4" />
+			<column name="nome" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="nivel" type="CHAR" length="225" jt="1" mandatory="y" />
+			<index name="pk_habilidade" unique="PRIMARY_KEY" >
+				<column name="id_skill" />
+			</index>
+			<fk name="FK_habilidade pessoa" to_schema="Default" to_table="pessoa" options="FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)" >
+				<fk_column name="id_skill" pk="id_pessoa" />
+			</fk>
+		</table>
+		<table name="idioma" spec="" >
+			<column name="id_formacao" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="id_pessoa" type="INTEGER" jt="4" />
+			<column name="nome_idioma" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="nivel_idioma" type="CHAR" length="225" jt="1" mandatory="y" />
+			<index name="pk_idioma" unique="PRIMARY_KEY" >
+				<column name="id_formacao" />
+			</index>
+			<fk name="FK_idioma pessoa" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_formacao" pk="id_pessoa" />
+			</fk>
+			<fk name="FK_idioma pessoa_001" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_pessoa" pk="id_pessoa" />
+			</fk>
+		</table>
+		<table name="pessoa" spec="" >
+			<column name="id_pessoa" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="nome" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="idade" type="INTEGER" jt="4" mandatory="y" />
+			<column name="cargo" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="foto" type="CHAR" length="225" jt="1" mandatory="y" />
+			<index name="pk_pessoa" unique="PRIMARY_KEY" >
+				<column name="id_pessoa" />
+			</index>
+			<fk name="FK_pessoa pessoa" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_pessoa" pk="id_pessoa" />
+			</fk>
+		</table>
+		<table name="recomendacao" spec="" >
+			<column name="id_reco" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="id_pessoa" type="INTEGER" jt="4" />
+			<column name="nome_pessoa" type="CHAR" length="225" jt="1" mandatory="y" />
+			<index name="pk_recomendacao" unique="PRIMARY_KEY" >
+				<column name="id_reco" />
+			</index>
+			<fk name="FK_recomendacao pessoa" to_schema="Default" to_table="pessoa" options="FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)" >
+				<fk_column name="id_reco" pk="id_pessoa" />
+			</fk>
+		</table>
+		<table name="sobre_mim" spec="" >
+			<column name="id_info" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="id_pessoa" type="INTEGER" jt="4" />
+			<column name="rua" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="estado" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="telefone" type="INTEGER" length="225" jt="4" mandatory="y" />
+			<column name="email" type="CHAR" length="225" jt="1" mandatory="y" />
+			<column name="objetivos" type="CHAR" length="225" jt="1" mandatory="y" />
+			<index name="pk_sobre_mim" unique="PRIMARY_KEY" >
+				<column name="id_info" />
+			</index>
+			<fk name="FK_sobre_mim pessoa" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_info" pk="id_pessoa" />
+			</fk>
+			<fk name="FK_sobre_mim pessoa_001" to_schema="Default" to_table="pessoa" options="" >
+				<fk_column name="id_pessoa" pk="id_pessoa" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.40.0.0.jar" driver_desc="Standard" host="localhost" port="7210" instance="C:/Users/Inteli/OneDrive/Área de Trabalho/Modulo 2 - Banco Pan/Programacao/dbcurriculo.db" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-1c25" show_relation="columns" >
+		<entity schema="Default" name="experiencia" color="BED3F4" x="448" y="336" />
+		<entity schema="Default" name="formacao" color="BED3F4" x="240" y="560" />
+		<entity schema="Default" name="habilidade" color="BED3F4" x="256" y="128" />
+		<entity schema="Default" name="idioma" color="BED3F4" x="48" y="352" />
+		<entity schema="Default" name="pessoa" color="BED3F4" x="256" y="336" />
+		<entity schema="Default" name="recomendacao" color="BED3F4" x="448" y="144" />
+		<entity schema="Default" name="sobre_mim" color="BED3F4" x="64" y="80" />
+		<callout x="256" y="192" pointer="Round" >
+			<comment><![CDATA[This is a layout. 
+- Double-click table headers, columns, or foreign keys to edit 
+- Drag tables to the layout from the structure tree, or 
+   add them by pressing the arrow icon near columns 
+- Create multiple layouts with the same or different tables 
+- Right-click the layout to create new tables]]></comment>
+		</callout>
+		<group name="pessoa" color="ECF0F7" >
+			<entity schema="Default" name="pessoa" />
+			<entity schema="Default" name="experiencia" />
+			<entity schema="Default" name="formacao" />
+			<entity schema="Default" name="idioma" />
+			<entity schema="Default" name="sobre_mim" />
+			<entity schema="Default" name="habilidade" />
+			<entity schema="Default" name="recomendacao" />
+		</group>
+	</layout>
+	<layout name="~Layout with Sample Tools" id="Layout-8d0" show_column_type="y" show_relation="columns" >
+		<entity schema="Default" name="experiencia" color="BED3F4" x="560" y="304" />
+		<entity schema="Default" name="formacao" color="BED3F4" x="304" y="528" />
+		<entity schema="Default" name="habilidade" color="BED3F4" x="320" y="96" />
+		<entity schema="Default" name="idioma" color="BED3F4" x="48" y="320" />
+		<entity schema="Default" name="pessoa" color="BED3F4" x="320" y="304" />
+		<entity schema="Default" name="recomendacao" color="BED3F4" x="560" y="112" />
+		<entity schema="Default" name="sobre_mim" color="BED3F4" x="80" y="48" />
+		<script name="SQL Editor" id="Editor-19d3" language="SQL" >
+			<string><![CDATA[SELECT
+	id_pessoa, nome, idade, cargo, foto
+FROM
+	pessoa a;]]></string>
+		</script>
+		<browser id="Browse-26db" name="Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="Default" entity="pessoa" x="20" y="20" width="400" height="300" >
+				<browse_table schema="Default" entity="experiencia" fk="FK_experiencia pessoa" x="440" y="20" width="500" height="350" />
+			</browse_table>
+		</browser>
+		<query id="Query-214e" name="Query Builder" >
+			<query_table schema="Default" name="pessoa" alias="p" x="48" y="48" >
+				<column name="id_pessoa" />
+				<column name="nome" />
+				<column name="idade" />
+				<column name="cargo" />
+				<column name="foto" />
+				<query_table schema="Default" name="experiencia" alias="e" x="240" y="48" fk="FK_experiencia pessoa" type="Inner Join" >
+					<column name="id_expec" />
+					<column name="id_pessoa" />
+					<column name="nome_empresa" />
+					<column name="ano" />
+					<column name="cargo" />
+					<column name="descricao" />
+				</query_table>
+			</query_table>
+		</query>
+		<form name="Report" id="Report-187b" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="Pessoa Data" template="H3" pos="0,0,1,0,l,c" />
+				<cell type="chart" name="Pie" template="Pie" pos="0,1,4,1,l,c" max_records="20" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="id_pessoa" type="4" />
+						<var name="nome" type="1" />
+						<var name="idade" type="4" />
+						<var name="cargo" type="1" />
+						<var name="foto" type="1" />
+						<script ><![CDATA[SELECT * FROM pessoa]]></script>
+					</form_script>
+					<param name="i0" value="foto" />
+					<param name="width" value="100%" />
+					<param name="v0" value="idade" />
+					<param name="title" value="Sample Chart" />
+					<param name="height" value="400px" />
+				</cell>
+				<tableview name="sample" template="Table" css="table table-striped table-sm table-hover" pos="0,2,4,2,f,f" layout="{{-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="id_pessoa" type="4" />
+						<var name="nome" type="1" />
+						<var name="idade" type="4" />
+						<var name="cargo" type="1" />
+						<var name="foto" type="1" />
+						<script ><![CDATA[SELECT * FROM pessoa]]></script>
+					</form_script>
+					<cell type="label" name="id_pessoa" pos="0,0,0,0,c,c" />
+					<cell type="label" name="nome" pos="1,0,1,0,c,c" />
+					<cell type="label" name="idade" pos="2,0,2,0,c,c" />
+					<cell type="label" name="cargo" pos="3,0,3,0,c,c" />
+					<cell type="label" name="foto" pos="4,0,4,0,c,c" />
+					<cell type="label" name="Button can open other pages." pos="5,0,5,0,c,c" />
+					<cell type="label" name="${id_pessoa}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${nome}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${idade}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${cargo}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${foto}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="button" name="More" template="Plain" css="btn btn-sm btn-secondary" pos="5,1,5,1,c,c" ref_id="Report-187b" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,3,0,3,l,c" glyph="bi-chevron_double_left" ref_id="Report-187b" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,3,1,3,l,c" glyph="bi-chevron_left" ref_id="Report-187b" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,3,2,3,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,3,3,3,l,c" glyph="bi-chevron_right" ref_id="Report-187b" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>
