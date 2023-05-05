@@ -1,0 +1,7 @@
+  CREATE TABLE "usuario" (
+        "userId"	INTEGER NOT NULL,
+        "nome_completo"	char(128) NOT NULL,
+        "email"	char(55) NOT NULL,
+        "telefone"	char(14),
+        PRIMARY KEY("userId" AUTOINCREMENT)
+    )
